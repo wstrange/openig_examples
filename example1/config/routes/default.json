@@ -1,0 +1,37 @@
+{
+   "heap":{
+      "objects":[
+         {
+            "name":"DefChain",
+            "type":"Chain",
+            "config":{
+               "filters":[
+                  
+               ],
+               "handler":"Welcome"
+            }
+         },
+         {
+            "name":"Welcome",
+            "type":"StaticResponseHandler",
+            "config":{
+               "status":200,
+               "entity":"<html><h1>Welcome to OpenIG. Example 1</h1>
+                
+               <p> User Info data stored in the session: ${exchange.session.user_info} </p>
+               <p> Authenticate using <a href='/openid'>OpenID connect</a> filter </p>
+               </html>"
+            }
+         },
+         {
+            "name":"RouteDefault",
+            "type":"ClientHandler",
+            "config":{
+               
+            }
+         }
+      ]
+   },
+   "name":"zDefault",
+   "handler":"DefChain"
+}

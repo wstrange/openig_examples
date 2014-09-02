@@ -1,0 +1,77 @@
+{
+   "heap":{
+      "objects":[
+         {
+            "name":"LogSink",
+            "type":"ConsoleLogSink",
+            "config":{
+               "level":"DEBUG"
+            }
+         },
+         {
+            "name":"DispatchHandler",
+            "type":"DispatchHandler",
+            "config":{
+               "bindings":[
+                  {
+                     "handler":"MainChain"
+                  }
+               ]
+            }
+         },
+         {
+            "name":"Router",
+            "type":"Router",
+            "config":{
+               
+            }
+         },
+         {
+            "name":"MainChain",
+            "type":"Chain",
+            "config":{
+               "filters":[
+                  "CaptureFilter"
+               ],
+               "handler":"Router"
+            }
+         },
+         {
+            "name":"CaptureFilter",
+            "type":"CaptureFilter",
+            "config":{
+               "captureEntity":false,
+               "file":"/tmp/gateway.log"
+            }
+         },
+         {
+            "name":"DumpHandler",
+            "type":"Chain",
+            "config":{
+               "filters":[
+                  
+               ],
+               "handler":"DumpExchange"
+            }
+         },
+         {
+            "name":"DumpExchange",
+            "type":"ScriptableHandler",
+            "config":{
+               "type":"application/x-groovy",
+               "file":"DumpExchange.groovy"
+            }
+         },
+         {
+            "name":"DefaultHandler",
+            "type":"ClientHandler",
+            "config":{
+               
+            },
+            
+         }
+      ]
+   },
+   "handlerObject":"DispatchHandler",
+   
+}

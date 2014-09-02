@@ -1,0 +1,85 @@
+{
+   "heap":{
+      "objects":[
+         {
+            "name":"GoogleOIDC",
+            "type":"Chain",
+            "config":{
+               "filters":[
+                  "OpenIDConnectClient"
+               ],
+               "handler":"OutgoingChain"
+            }
+         },
+         {
+            "name":"OpenIDConnectClient",
+            "type":"OAuth2ClientFilter",
+            "config":{
+               "clientEndpoint":"/openid",
+               "requireHttps":false,
+               "requireLogin":true,
+               "target":"${exchange.openid}",
+               "scopes":[
+                  "openid",
+                  "profile"
+               ],
+               "failureHandler":"DumpHandler",
+               "providerHandler":"OIDCHandler",
+               "providers":[
+                  {
+                     "name":"google",
+                     "wellKnownConfiguration":"https://accounts.google.com/.well-known/openid-configuration",
+                     "clientId":"224470185996-nm4rj5jdq5uo0rnamashg8revpud388d.apps.googleusercontent.com",
+                     "clientSecret":"ciLzVAMitqmp3anQhLdJI8sV"
+                  }
+               ]
+            }
+         },
+         {
+            "name":"OIDCHandler",
+            "type":"ClientHandler",
+            "config":{
+               
+            }
+         },
+         {
+            "name":"GetCredentials",
+            "type":"ScriptableFilter",
+            "config":{
+               "type":"application/x-groovy",
+               "source":"exchange.lastname = exchange.openid.user_info.family_name;
+                         exchange.name = exchange.openid.user_info.name;
+                         exchange.session.user_info = exchange.openid.user_info;
+                         next.handle(exchange)"
+            }
+         },
+         {
+            "name":"Message",
+            "type":"StaticResponseHandler",
+            "config":{
+               "status":200,
+               "entity":"<html><p>Logged in user ${exchange.name}</p>
+                
+               <p> Saved user_info to session: ${exchange.session.user_info} </p>
+               <p>Return <a href='/'>home</a></p>
+               </html>"
+            }
+         }
+         {
+            "name":"OutgoingChain",
+            "type":"Chain",
+            "config":{
+               "filters":[
+                  "GetCredentials"
+               ],
+               "handler":"Message"
+            }
+         },
+         
+      ]
+   },
+   "name":"openid",
+   "handler":"GoogleOIDC",
+   "condition":"${matches(exchange.request.uri.path, '^/openid')}",
+   
+}
