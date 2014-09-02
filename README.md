@@ -18,7 +18,7 @@ This project contains a number of sample OpenIG configurations to demonstrate va
 
 See the README.md in each example directory for an description of each example. 
 
-*Pull requests are welcome!* If you have a neat OpenIG example that you can share, please add it as a
+**Pull requests are welcome!** If you have a neat OpenIG example that you can share, please add it as a
  new example directory and send me a pull request via github. 
  
 
