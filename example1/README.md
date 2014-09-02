@@ -5,10 +5,20 @@ Example1 - OIDC Authentication
 This example demonstrates OpenIG's OpenID Connect (OIDC) Authentication Filter.
 
 
-The example is configured to use Google+ Authentication using a client that is registered 
-to me. If you want to use your own client you will need to go the [google Cloud console]
-(https://console.developers.google.com/project?utm_referrer=blank) and register your  own demo client.
-Navigate to "Credentials" under APIs & Auth and create a new client for a web application.
+The example is configured to use Google+ OIDC Authentication. To run the example you must first register your own client
+with google. 
+
+To create a client go to the [google Cloud console]
+(https://console.developers.google.com/project?utm_referrer=blank) and 
+navigate to "Credentials" under APIs & Auth.  Take the client id and client secret that you obtain 
+and put them in the file env.sh. env.template is a starting template that you can use for the samples.
+
+You will also have to ensure the callback URL registered with google matches your OpenIG install. For example, if you are 
+running the OpenIG examples on Jetty on port 9080 on your local desktop, the callback URL is
+```http://localhost:9080/openid/callback```
+
+For Javascript orgins I use "http://localhost/"
+
 
 
 # How it works 

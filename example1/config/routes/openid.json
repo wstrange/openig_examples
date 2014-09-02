@@ -29,8 +29,8 @@
                   {
                      "name":"google",
                      "wellKnownConfiguration":"https://accounts.google.com/.well-known/openid-configuration",
-                     "clientId":"224470185996-nm4rj5jdq5uo0rnamashg8revpud388d.apps.googleusercontent.com",
-                     "clientSecret":"ciLzVAMitqmp3anQhLdJI8sV"
+                     "clientId":"${env.GOOGLE_CLIENT_ID}",
+                     "clientSecret":"${env.GOOGLE_CLIENT_SECRET}"
                   }
                ]
             }
@@ -80,6 +80,5 @@
    },
    "name":"openid",
    "handler":"GoogleOIDC",
-   "condition":"${matches(exchange.request.uri.path, '^/openid')}",
-   
+   "condition":"${matches(exchange.request.uri.path, '^/openid')}"
 }

@@ -32,6 +32,22 @@ the OPENIG_BASE environment variable. For example, to test example 1, using Jett
  java -Dopenig.base=/Users/myhome/src/openig_examples/example1 -jar start.jar 
  ```
 
+
+For you convenience there is a shell script ```run.sh``` that will handle the above for you. 
+
+To use run.sh, copy the file env.template to env.sh, and edit to suit your environment.
+
+To run an example:
+```
+./run.sh example1
+```
+
+# Secrets 
+
+The examples use stored secrets which should not be checked in to github. Copy 
+the file env.template to env.sh and edit to suit your environment.
+
+
 # Examples
 
  
