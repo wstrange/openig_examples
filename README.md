@@ -33,7 +33,7 @@ the OPENIG_BASE environment variable. For example, to test example 1, using Jett
  ```
 
 
-For you convenience there is a shell script ```run.sh``` that will handle the above for you. 
+For your convenience there is a shell script ```run.sh``` that will handle the above for you. 
 
 To use run.sh, copy the file env.template to env.sh, and edit to suit your environment.
 

@@ -14,8 +14,9 @@ navigate to "Credentials" under APIs & Auth.  Take the client id and client secr
 and put them in the file env.sh. env.template is a starting template that you can use for the samples.
 
 You will also have to ensure the callback URL registered with google matches your OpenIG install. For example, if you are 
-running the OpenIG examples on Jetty on port 9080 on your local desktop, the callback URL is
-```http://localhost:9080/openid/callback```
+running the OpenIG examples on Jetty on port 9080 on your local desktop, the callback URL would be:
+
+"http://localhost:9080/openid/callback"
 
 For Javascript orgins I use "http://localhost/"
 
@@ -45,7 +46,7 @@ This route is also configured to write the user info obtained from the OIDC prov
 
 # Routing
 
-Note that OpenIG accepts the *first* route that matches a request, and it evaluates routes in 
+OpenIG accepts the *first* route that matches a request, and it evaluates routes in 
 name lexicographical order.  This is why this default filter is named "zDefault" (z being
 at the end of the alphabet).  If 
 (for example) the default filter was called "aDefault" - our OpenID filter would never run. 
