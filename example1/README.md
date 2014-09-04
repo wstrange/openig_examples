@@ -44,12 +44,3 @@ as the callback (my OpenIG example is running on a laptop in a local container).
 
 This route is also configured to write the user info obtained from the OIDC provider to the session. 
 
-# Routing
-
-OpenIG accepts the *first* route that matches a request, and it evaluates routes in 
-name lexicographical order.  This is why this default filter is named "zDefault" (z being
-at the end of the alphabet).  If 
-(for example) the default filter was called "aDefault" - our OpenID filter would never run. 
-The default filter would always take precedence since it matches any request, and is evaluated first. 
-
-

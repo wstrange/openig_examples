@@ -1,0 +1,69 @@
+{
+   "heap":{
+      "objects":[
+         {
+            "name":"shortner",
+            "type":"Chain",
+            "config":{
+               "filters":[
+                  "OAuthFilter",
+                  "CaptureTokenInfo",
+                  "CallRESTService"
+               ],
+               "handler":"DefaultHandler"
+            }
+         },
+         {
+            "name":"OAuthFilter",
+            "type":"OAuth2ResourceServerFilter",
+            "config":{
+               "httpHandler":"DefaultHandler",
+               "requiredScopes":[
+                  "mail",
+                  "cn"
+               ],
+               "enforceHttps":false,
+               "target":"${exchange.token}",
+               "tokenInfoEndpoint":"http://openam.example.com:28080/openam/oauth2/tokeninfo"
+            }
+         },
+         {
+            "name":"CaptureTokenInfo",
+            "type":"ScriptableFilter",
+            "config":{
+               "type":"application/x-groovy",
+               "source":"import org.forgerock.json.fluent.JsonValue;                                
+                        logger.info(exchange.token.info.toString());
+                        logger.info('requesturlis ' + exchange.request.uri )
+                        exchange.queryUrl = exchange.request.uri.query
+                      
+                        next.handle(exchange)"
+            }
+         },
+         {
+            "name":"HandlerForDebug",
+            "type":"StaticResponseHandler",
+            "config":{
+               "status":200,
+               "entity":"<html> You passed the filter !
+               User cn is ${exchange.token.info.cn}
+               Mail is ${exchange.token.info.mail}
+                INfo is ${exchange.token.info}
+                 
+               </html>"
+            }
+         },
+         {
+            "name":"CallRESTService",
+            "type":"StaticRequestFilter",
+            "config":{
+               "method":"GET",
+               "uri":"http://tinyurl.com/api-create.php?${exchange.queryUrl}"
+            }
+         }
+      ]
+   },
+   "name":"short",
+   "handler":"shortner",
+   "condition":"${matches(exchange.request.uri.path,'^/short')}"
+}

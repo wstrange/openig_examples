@@ -54,6 +54,16 @@ the file env.template to env.sh and edit to suit your environment.
 Example  | Description 
 ---------| -----------
 example1 | Demonstrate authentication using the OpenID Connect Filter 
+example2 | Using the OAuth2 resource server filter to protect a REST resource
+
+
+# A Note on Routing
+
+OpenIG accepts the *first* route that matches a request, and it evaluates routes in 
+name lexicographical order.  This is why this default route in the examples is named "zDefault" (z being
+at the end of the alphabet).  If 
+(for example) the default route was called "aDefault" - our other routes would never run. 
+The default route would always take precedence since it matches any request, and is evaluated first. 
 
 
 

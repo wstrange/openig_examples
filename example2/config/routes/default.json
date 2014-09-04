@@ -1,0 +1,29 @@
+{
+   "heap":{
+      "objects":[
+         {
+            "name":"DefChain",
+            "type":"Chain",
+            "config":{
+               "filters":[
+                  
+               ],
+               "handler":"Welcome"
+            }
+         },
+         {
+            "name":"Welcome",
+            "type":"StaticResponseHandler",
+            "config":{
+               "status":200,
+               "entity":"<html><h1>Welcome to OpenIG. Example 1</h1>
+                
+             
+               </html>"
+            }
+         }
+      ]
+   },
+   "name":"zDefault",
+   "handler":"DefChain"
+}
